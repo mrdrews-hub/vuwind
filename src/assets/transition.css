@@ -1,0 +1,43 @@
+/* FADE */
+.fade-enter-active,
+.fade-leave-active {
+  scale: 100%;
+  transition: all 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  scale: 95%;
+  opacity: 0;
+}
+
+/* SLIDE FADE */
+.slide-fade-enter-active {
+  transition: all 0.2s ease-in;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.4s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(18px);
+  opacity: 0;
+}
+
+/* SLIDE UP */
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
