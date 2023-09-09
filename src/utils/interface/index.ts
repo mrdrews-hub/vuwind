@@ -1,0 +1,1 @@
+export type { TableHead } from './Table';

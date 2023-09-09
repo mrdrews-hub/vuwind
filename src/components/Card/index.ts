@@ -1,0 +1,1 @@
+export { default as CardStatistic } from './CardStatistic.vue'

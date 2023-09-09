@@ -9,6 +9,10 @@ export default {
       backgroundColor: {
         'primary': '#FF9B50',
         'secondary': '#E25E3E',
+        
+      },
+      backgroundImage: {
+        'gradient-primary': 'linear-gradient(0deg, #FF6969 12%, rgba(252, 104, 91, 1) 84%)',
       },
       colors: {
         'primary': '#E25E3E',
