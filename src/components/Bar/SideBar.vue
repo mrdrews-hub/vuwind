@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { Bars3CenterLeftIcon } from '@heroicons/vue/24/solid'
 import { ChartPieIcon, ArchiveBoxIcon, ChevronRightIcon, BanknotesIcon, ClipboardDocumentIcon } from '@heroicons/vue/24/outline'
+import { FacebookIcon } from '../Icon';
 import { RouterLink } from 'vue-router';
-import Divider from './Divider.vue';
+import { storeToRefs } from 'pinia'
+import { useStylingStore } from '../../stores/styles';
+
+const stylesStore = useStylingStore();
+const { sideBarMode, hoverable, hovered, shouldExpand } = storeToRefs(stylesStore);
+const { handleMouseLeave, handleMouseOver, handleTogleSidebarMode } = stylesStore;
 
 const navItems = [
   {
@@ -15,7 +21,7 @@ const navItems = [
   {
     id: 'accounts',
     name: 'Accounts',
-    icon: ArchiveBoxIcon,
+    icon: FacebookIcon,
     path: '/product'
   },
   {
@@ -32,35 +38,6 @@ const navItems = [
   },
 ]
 
-const sideBarMode = ref<'expand' | 'mini' | 'hide'>('expand')
-const hoverable = ref(false);
-const hovered = ref(false);
-
-const isMobile = computed(() => navigator.userAgentData.mobile)
-
-const handleTogleSidebarMode = () => {
-  switch (sideBarMode.value) {
-    case 'expand':
-      sideBarMode.value = 'mini'
-      return
-    case 'mini':
-      hoverable.value = true;
-      sideBarMode.value = 'expand'
-      return
-    default:
-      sideBarMode.value = 'expand'
-      return
-  }
-}
-const handleMouseOver = async () => {
-  if (hoverable.value || sideBarMode.value === 'mini') {
-    hovered.value = true;
-  }
-}
-const handleMouseLeave = () => {
-  if (!hoverable.value && sideBarMode.value === 'expand') return
-  hovered.value = false;
-}
 // watch(
 //   sideBarMode,
 //   (newval) => {
@@ -76,14 +53,14 @@ const handleMouseLeave = () => {
   <aside
     class="h-screen w-60 bg-white fixed left-0 z-10 transition-all duration-300"
     :class="{
-      'w-60': sideBarMode === 'expand',
-      'w-16': sideBarMode === 'mini' && !hovered || isMobile,
+      '!w-16': shouldExpand,
     }"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
   >
     <div id="brand" class="flex justify-between h-16 p-5">
-      <h2 id="title" class="font-extrabold text-xl">{{isMobile}}</h2>
+      <h2 id="title" class="font-extrabold text-xl">Tizzly</h2>
+      <!-- <h2 id="title" class="font-extrabold text-2xl text-center" v-else-if="sideBarMode === 'mini'">T</h2> -->
       <button
         v-show="sideBarMode === 'expand' || hovered"
         @click="handleTogleSidebarMode"

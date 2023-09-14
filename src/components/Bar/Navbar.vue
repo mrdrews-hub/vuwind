@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { BellAlertIcon, BanknotesIcon } from '@heroicons/vue/24/outline'
 import BreadCrumb from './BreadCrumb.vue';
 
 const [route, router] = [useRoute(), useRouter()]
@@ -31,7 +32,14 @@ watch(
         <BreadCrumb :class="{'mt-0': isLoading}" />
       </div>
     </div>
-    <div id="profile" class="flex justify-end items-center w-1/2">
+    <div id="profile" class="flex justify-end items-center w-1/2 gap-x-2">
+      <button type="button" class="flex flex-col justify-center items-center gap-x-2 bg-gray-50 text-primary transition-all duration-200 py-2 px-4 rounded-lg">
+        <p class="text-xs font-bold mb-1">Rp. 100.000.000</p>
+        <p class="text-xs">Saldo Balance</p>
+      </button>
+      <button type="button" class="flex flex-col justify-center items-center gap-x-2 transition-all duration-200 p-3 hover:bg-secondary rounded-lg">
+        <BellAlertIcon class="h-6 w-6" />
+      </button>
       <button type="button" class="flex items-center gap-x-2 hover:bg-secondary transition-all duration-200 p-2.5 rounded-lg">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSloBeZt1lALmQuMv-e-94ROUGgTebkFlXDWCs5XTz4v9j_8WrSl-qri675Y5vwr4M2JkA&usqp=CAU" alt="" class="h-6 w-6 rounded-full">
         <p>Andre Saputra Nurjaya</p>
