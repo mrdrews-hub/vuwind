@@ -2,7 +2,7 @@
 import DataTable from '@/components/Table/DataTable.vue';
 import { InputSwitch } from '@/components/Input';
 import type { TableHead } from '@/utils/interface'
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const head : TableHead = [
   {
@@ -31,6 +31,12 @@ const tableItems  = [
 
 const isProductActive = ref(false)
 
+onMounted(() => {
+  console.log(document.getElementById('video'));
+  setTimeout(() => {
+    document.getElementById('video')?.removeAttribute('muted')
+  }, 100);
+})
 </script>
 <template>
   <div class="about">
@@ -41,5 +47,6 @@ const isProductActive = ref(false)
     />
     <InputSwitch v-model="isProductActive" />
     <h1>This is an about page</h1>
+    <video src="/tes.mp4" class="w-64 h-64" controls autoplay muted id="video"></video>
   </div>
 </template>
