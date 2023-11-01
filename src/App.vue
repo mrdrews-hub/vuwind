@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import MainLayout from './layouts/MainLayout.vue';
 import { SideBar, Navbar } from '@/components/Bar';
+// import ReloadPWA from './components/Pwa/ReloadPWA.vue';
 </script>
 
 <template>
